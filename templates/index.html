@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="AI-powered learning assistant that recommends the best books and online courses based on your interests, skill level, and learning goals."/>
+  <title>AI Learning Recommender — Find Your Perfect Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+  <!-- ═══ AMBIENT BACKGROUND ═══════════════════════════════════════════════ -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ═══ HEADER / HERO ════════════════════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero-badge">🤖 AI-Powered Recommendations</div>
+    <h1 class="hero-title">AI Learning <span class="gradient-text">Recommender</span></h1>
+    <p class="hero-subtitle">
+      Answer 4 quick questions and let our AI match you with the best
+      books &amp; online courses perfectly suited to your goals.
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><strong>50+</strong><span>Courses &amp; Books</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>5</strong><span>Categories</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><strong>3</strong><span>Skill Levels</span></div>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═════════════════════════════════════════════════════ -->
+  <main class="main-container">
+
+    <!-- ── WIZARD FORM ───────────────────────────────────────────────────── -->
+    <section class="form-card glass" aria-label="Preference form">
+      <div class="form-header">
+        <div class="ai-avatar">🧠</div>
+        <div>
+          <h2 class="form-title">Tell me about yourself</h2>
+          <p class="form-subtitle">I'll find the perfect learning path for you</p>
+        </div>
+      </div>
+
+      <form id="recommendForm" novalidate>
+
+        <!-- Q1: Topic -->
+        <div class="form-group" id="group-topic">
+          <label class="form-label" for="topic">
+            <span class="q-badge">Q1</span>
+            What topic do you want to learn?
+          </label>
+          <div class="select-wrapper">
+            <select id="topic" name="topic" required>
+              <option value="" disabled selected>Choose a topic…</option>
+              <option value="AI">🤖 Artificial Intelligence</option>
+              <option value="Programming">💻 Programming</option>
+              <option value="Data Science">📊 Data Science</option>
+              <option value="Web Development">🌐 Web Development</option>
+              <option value="Cybersecurity">🔐 Cybersecurity</option>
+            </select>
+            <span class="select-arrow">▾</span>
+          </div>
+          <span class="field-error" id="error-topic"></span>
+        </div>
+
+        <!-- Q2: Level -->
+        <div class="form-group" id="group-level">
+          <label class="form-label" for="level">
+            <span class="q-badge">Q2</span>
+            What is your current skill level?
+          </label>
+          <div class="radio-group" role="radiogroup" aria-labelledby="level-label">
+            <label class="radio-card" id="level-beginner">
+              <input type="radio" name="level" value="Beginner" id="level-beg"/>
+              <span class="radio-icon">🌱</span>
+              <span class="radio-label">Beginner</span>
+            </label>
+            <label class="radio-card" id="level-intermediate">
+              <input type="radio" name="level" value="Intermediate" id="level-int"/>
+              <span class="radio-icon">🚀</span>
+              <span class="radio-label">Intermediate</span>
+            </label>
+            <label class="radio-card" id="level-advanced">
+              <input type="radio" name="level" value="Advanced" id="level-adv"/>
+              <span class="radio-icon">⚡</span>
+              <span class="radio-label">Advanced</span>
+            </label>
+          </div>
+          <span class="field-error" id="error-level"></span>
+        </div>
+
+        <!-- Q3: Goal -->
+        <div class="form-group" id="group-goal">
+          <label class="form-label" for="goal">
+            <span class="q-badge">Q3</span>
+            What is your learning goal?
+          </label>
+          <div class="radio-group" role="radiogroup" aria-labelledby="goal-label">
+            <label class="radio-card">
+              <input type="radio" name="goal" value="Get a job" id="goal-job"/>
+              <span class="radio-icon">💼</span>
+              <span class="radio-label">Get a Job</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="goal" value="Improve skills" id="goal-skills"/>
+              <span class="radio-icon">📈</span>
+              <span class="radio-label">Improve Skills</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="goal" value="Academic learning" id="goal-academic"/>
+              <span class="radio-icon">🎓</span>
+              <span class="radio-label">Academic</span>
+            </label>
+          </div>
+          <span class="field-error" id="error-goal"></span>
+        </div>
+
+        <!-- Q4: Duration -->
+        <div class="form-group" id="group-duration">
+          <label class="form-label">
+            <span class="q-badge">Q4</span>
+            Preferred course length?
+          </label>
+          <div class="duration-group">
+            <label class="duration-card">
+              <input type="radio" name="duration" value="Short" id="dur-short"/>
+              <span class="dur-icon">⚡</span>
+              <span class="dur-title">Short</span>
+              <span class="dur-desc">Under 4 weeks</span>
+            </label>
+            <label class="duration-card">
+              <input type="radio" name="duration" value="Medium" id="dur-medium"/>
+              <span class="dur-icon">📅</span>
+              <span class="dur-title">Medium</span>
+              <span class="dur-desc">1 – 3 months</span>
+            </label>
+            <label class="duration-card">
+              <input type="radio" name="duration" value="Long" id="dur-long"/>
+              <span class="dur-icon">🏆</span>
+              <span class="dur-title">Long</span>
+              <span class="dur-desc">3+ months</span>
+            </label>
+          </div>
+          <span class="field-error" id="error-duration"></span>
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="btn-recommend" id="submitBtn">
+          <span class="btn-text">✨ Get My Recommendations</span>
+          <div class="btn-spinner hidden" id="spinner"></div>
+        </button>
+
+      </form>
+    </section>
+
+    <!-- ── RESULTS SECTION ───────────────────────────────────────────────── -->
+    <section id="resultsSection" class="results-section hidden" aria-live="polite" aria-label="Recommendations">
+
+      <div class="results-header">
+        <h2 class="results-title">🎯 Recommended for You</h2>
+        <p class="results-subtitle" id="resultsSummary"></p>
+      </div>
+
+      <div class="results-grid" id="resultsGrid"></div>
+
+      <button class="btn-retry" id="retryBtn">← Try Again</button>
+    </section>
+
+    <!-- ── EMPTY / ERROR STATE ───────────────────────────────────────────── -->
+    <div class="error-box hidden" id="errorBox" role="alert">
+      <span class="error-icon">⚠️</span>
+      <p id="errorMessage">Something went wrong. Please try again.</p>
+    </div>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <p>Built with 🧠 Python · Flask · Scikit-learn · TF-IDF Cosine Similarity</p>
+    <p class="footer-sub">AI Book &amp; Online Course Recommender System · ML Mini Project</p>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

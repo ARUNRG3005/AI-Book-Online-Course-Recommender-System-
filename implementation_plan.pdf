@@ -1,0 +1,149 @@
+# AI Book & Online Course Recommender System — Implementation Plan
+
+## Goal
+
+Build a fully functional, beginner-friendly web application that collects 4 user preferences (topic, level, goal, duration), runs a **content-based filtering** ML algorithm using TF-IDF + cosine similarity, and returns ranked course/book recommendations via a beautiful dark-mode web UI.
+
+---
+
+## System Architecture
+
+```
+┌─────────────────────────────────────────────────────┐
+│                   FRONTEND (Browser)                 │
+│  HTML form → collects topic, level, goal, duration  │
+│  JS fetch → POST /recommend                         │
+│  Display → renders recommendation cards             │
+└───────────────────┬─────────────────────────────────┘
+                    │ HTTP (JSON)
+┌───────────────────▼─────────────────────────────────┐
+│                 BACKEND (Flask/Python)               │
+│  GET  /courses  → returns all dataset rows          │
+│  POST /recommend → runs ML and returns top-N picks  │
+└───────────────────┬─────────────────────────────────┘
+                    │ pandas read_csv
+┌───────────────────▼─────────────────────────────────┐
+│             ML ENGINE (recommender.py)               │
+│  TF-IDF vectorize tags+category                     │
+│  One-hot encode level, duration                     │
+│  Cosine similarity against user query vector        │
+│  Return top 5 sorted by score                       │
+└───────────────────┬─────────────────────────────────┘
+                    │
+┌───────────────────▼─────────────────────────────────┐
+│           DATASET  (dataset/courses.csv)             │
+│  id, title, category, level, duration, rating, tags  │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## Proposed File/Folder Structure
+
+```
+ML - Project/
+├── dataset/
+│   └── courses.csv              # 40+ curated entries
+├── static/
+│   ├── css/
+│   │   └── style.css            # Premium dark-mode design
+│   └── js/
+│       └── app.js               # Fetch API + DOM rendering
+├── templates/
+│   └── index.html               # Main page with form
+├── app.py                       # Flask app + routes
+├── recommender.py               # TF-IDF + cosine similarity logic
+├── preprocess.py                # Data loading + encoding helpers
+└── requirements.txt             # Python dependencies
+```
+
+---
+
+## Proposed Changes
+
+### Dataset Layer
+
+#### [NEW] [courses.csv](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/dataset/courses.csv)
+- 40+ rows covering 5 categories: AI, Programming, Data Science, Web Development, Cybersecurity
+- Columns: `id, title, category, level, duration, rating, tags`
+- Tags are comma-separated keywords used for TF-IDF vectorization
+
+---
+
+### ML Engine
+
+#### [NEW] [preprocess.py](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/preprocess.py)
+- `load_dataset()` — reads `courses.csv` with pandas, fills NaNs
+- `build_feature_matrix(df)` — combines TF-IDF on `tags+category` with one-hot encoded `level` and `duration` into a single scipy sparse feature matrix
+
+#### [NEW] [recommender.py](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/recommender.py)
+- `build_user_vector(user_prefs, tfidf_vectorizer, feature_names)` — converts the 4 user inputs into the same vector space
+- `recommend(user_prefs, top_n=5)` — main function: loads data, builds matrix, computes cosine similarity, returns top-N as list of dicts
+
+---
+
+### Backend API
+
+#### [NEW] [app.py](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/app.py)
+- `GET /` — serves `index.html`
+- `GET /courses` — returns full dataset as JSON
+- `POST /recommend` — accepts `{topic, level, goal, duration}` JSON, returns `[{title, category, level, rating, duration, tags}]`
+- CORS enabled for local dev
+
+#### [NEW] [requirements.txt](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/requirements.txt)
+```
+flask
+flask-cors
+pandas
+numpy
+scikit-learn
+```
+
+---
+
+### Frontend
+
+#### [NEW] [index.html](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/templates/index.html)
+- Animated gradient hero header: "AI Learning Recommender"
+- 4-question wizard form (dropdowns for topic, level, goal, duration)
+- "Get Recommendations" button
+- Results section with animated cards showing title, level, rating stars, duration badge, tags
+
+#### [NEW] [style.css](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/static/css/style.css)
+- Deep navy/purple dark-mode palette
+- Glassmorphism cards with hover lift
+- Gradient buttons with shimmer animation
+- Google Font: **Inter**
+- Responsive grid layout for results
+
+#### [NEW] [app.js](file:///c:/Users/mr/OneDrive/Desktop/Arun%20project/ML%20-%20Project/static/js/app.js)
+- Reads form values on button click
+- `fetch("POST /recommend")` with JSON body
+- Renders recommendation cards with staggered fade-in animation
+- Displays loading spinner while waiting
+
+---
+
+## Verification Plan
+
+### Automated / Local
+
+| Step | Command |
+|------|---------|
+| Install deps | `pip install -r requirements.txt` |
+| Start server | `python app.py` |
+| Open browser | Navigate to `http://127.0.0.1:5000` |
+| API test | `curl -X POST http://127.0.0.1:5000/recommend -H "Content-Type: application/json" -d "{\"topic\":\"AI\",\"level\":\"Beginner\",\"goal\":\"Get a job\",\"duration\":\"Short\"}"` |
+
+### Manual UI Test Cases
+
+| Topic | Level | Goal | Duration | Expected |
+|-------|-------|------|----------|---------|
+| AI | Beginner | Get a job | Short | AI/ML beginner courses |
+| Web Development | Intermediate | Improve skills | Medium | Mid-level web dev courses |
+| Cybersecurity | Advanced | Academic learning | Long | Advanced security content |
+| Data Science | Beginner | Academic learning | Short | Intro data science |
+| Programming | Intermediate | Get a job | Medium | Python/Java career tracks |
+
+### Deployment (Optional)
+- Push to GitHub → connect to **Render** (free tier) → set start command to `gunicorn app:app`

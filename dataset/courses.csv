@@ -1,0 +1,51 @@
+id,title,category,level,duration,rating,tags
+1,AI Fundamentals,AI,Beginner,Short,4.7,artificial intelligence basics introduction concepts
+2,Machine Learning for Beginners,AI,Beginner,Medium,4.8,machine learning supervised unsupervised beginner
+3,Deep Learning Basics,AI,Beginner,Short,4.5,deep learning neural networks introduction
+4,Python for Machine Learning,AI,Beginner,Short,4.9,python programming machine learning beginner
+5,Intro to Data Science,Data Science,Beginner,Short,4.6,data science introduction analytics beginner
+6,Neural Networks Explained,AI,Intermediate,Medium,4.7,neural networks deep learning intermediate
+7,Natural Language Processing,AI,Intermediate,Medium,4.6,nlp text processing language models
+8,Computer Vision with OpenCV,AI,Intermediate,Medium,4.5,computer vision image processing opencv
+9,Reinforcement Learning,AI,Advanced,Long,4.8,reinforcement learning agents policy optimization advanced
+10,Advanced Deep Learning,AI,Advanced,Long,4.9,deep learning transformers advanced research
+11,Python Programming Basics,Programming,Beginner,Short,4.7,python basics syntax beginner programming
+12,Java for Beginners,Programming,Beginner,Short,4.5,java beginner programming fundamentals
+13,C++ Programming Fundamentals,Programming,Beginner,Medium,4.4,c++ programming fundamentals beginner
+14,JavaScript Essentials,Programming,Beginner,Short,4.6,javascript web beginner programming essentials
+15,Object-Oriented Programming,Programming,Intermediate,Medium,4.7,oop object oriented design patterns intermediate
+16,Data Structures and Algorithms,Programming,Intermediate,Long,4.9,data structures algorithms problem solving intermediate
+17,Design Patterns in Python,Programming,Intermediate,Medium,4.6,design patterns python software engineering
+18,System Design Fundamentals,Programming,Advanced,Long,4.8,system design scalability architecture advanced
+19,Clean Code Principles,Programming,Intermediate,Medium,4.7,clean code refactoring best practices software
+20,Competitive Programming,Programming,Advanced,Long,4.6,competitive programming algorithms problem solving
+21,Data Analysis with Pandas,Data Science,Beginner,Short,4.8,pandas data analysis python beginner
+22,Statistics for Data Science,Data Science,Beginner,Medium,4.6,statistics probability data science beginner
+23,Data Visualization with Matplotlib,Data Science,Beginner,Short,4.5,matplotlib visualization charts data beginner
+24,SQL for Data Science,Data Science,Beginner,Short,4.7,sql database queries data beginner
+25,Machine Learning with Scikit-learn,Data Science,Intermediate,Medium,4.8,scikit-learn machine learning models intermediate
+26,Big Data with Spark,Data Science,Intermediate,Medium,4.6,spark big data processing intermediate
+27,Feature Engineering Techniques,Data Science,Intermediate,Medium,4.7,feature engineering preprocessing data science
+28,Advanced Analytics and Forecasting,Data Science,Advanced,Long,4.8,forecasting time series analytics advanced
+29,Applied Data Science Projects,Data Science,Advanced,Long,4.9,data science projects portfolio advanced
+30,HTML and CSS Basics,Web Development,Beginner,Short,4.6,html css web design beginner basics
+31,JavaScript for Web Development,Web Development,Beginner,Short,4.7,javascript web frontend beginner
+32,Responsive Web Design,Web Development,Beginner,Short,4.5,responsive design css flexbox grid beginner
+33,React JS Fundamentals,Web Development,Intermediate,Medium,4.8,react javascript frontend intermediate components
+34,Node.js and Express,Web Development,Intermediate,Medium,4.7,nodejs express backend api intermediate
+35,Full Stack Web Development,Web Development,Intermediate,Long,4.9,full stack html css js react node intermediate
+36,REST API Design,Web Development,Intermediate,Medium,4.6,rest api design backend web development
+37,Vue.js Complete Guide,Web Development,Intermediate,Medium,4.5,vuejs javascript frontend framework intermediate
+38,Next.js and Server-Side Rendering,Web Development,Advanced,Long,4.8,nextjs ssr react advanced web
+39,Web Performance Optimization,Web Development,Advanced,Medium,4.7,performance optimization web advanced
+40,Cybersecurity Basics,Cybersecurity,Beginner,Short,4.6,cybersecurity basics introduction security beginner
+41,Ethical Hacking for Beginners,Cybersecurity,Beginner,Medium,4.7,ethical hacking penetration testing beginner
+42,Network Security Fundamentals,Cybersecurity,Beginner,Short,4.5,network security protocols fundamentals beginner
+43,Linux for Security Professionals,Cybersecurity,Intermediate,Medium,4.6,linux command line security intermediate
+44,Penetration Testing with Kali Linux,Cybersecurity,Intermediate,Long,4.8,penetration testing kali linux intermediate
+45,Web Application Security,Cybersecurity,Intermediate,Medium,4.7,web security owasp vulnerabilities intermediate
+46,Malware Analysis and Reverse Engineering,Cybersecurity,Advanced,Long,4.8,malware analysis reverse engineering advanced
+47,Advanced Threat Intelligence,Cybersecurity,Advanced,Long,4.9,threat intelligence advanced security analysis
+48,Cryptography and Encryption,Cybersecurity,Advanced,Long,4.7,cryptography encryption security advanced mathematics
+49,Cloud Security on AWS,Cybersecurity,Advanced,Medium,4.6,cloud security aws advanced infrastructure
+50,Digital Forensics,Cybersecurity,Advanced,Long,4.8,digital forensics investigation security advanced
