@@ -126,76 +126,151 @@ function clearFieldErrors() {
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
+   STUDY ROADMAP GENERATOR
+   ════════════════════════════════════════════════════════════════════════ */
+function generateRoadmap(course) {
+  const dur = course.duration.toLowerCase();
+  const cat = course.category.toLowerCase();
+  
+  const steps = [
+    { title: "Foundation & Setup", desc: `Install required tools for ${cat} and learn the basic syntax/theory.` },
+    { title: "Core Concepts", desc: `Deep dive into ${escapeHTML(course.tags.split(' ')[0])} and primary modules.` },
+  ];
+
+  if (dur === "short") {
+    steps.push({ title: "Quick Project", desc: "Build a mini-application to apply what you've learned." });
+    steps.push({ title: "Review & Cert", desc: "Final recap and claim your basic certificate." });
+  } else if (dur === "medium") {
+    steps.push({ title: "Intermediate Modules", desc: "Explore complex patterns, libraries, and real-world use cases." });
+    steps.push({ title: "Capstone Project", desc: "Develop a functional portfolio project with documentation." });
+    steps.push({ title: "Final Assessment", desc: "Test your skills with a comprehensive exam." });
+  } else {
+    steps.push({ title: "Advanced Architecture", desc: "Master scaling, optimization, and advanced industry standards." });
+    steps.push({ title: "Real-world Deployment", desc: "Deploy a full-scale application to a production environment." });
+    steps.push({ title: "Industry Specialization", desc: "Focus on a niche area and prepare for professional interviews." });
+  }
+  
+  return steps;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
    RENDER RESULTS
    ════════════════════════════════════════════════════════════════════════ */
 function renderResults(recommendations, prefs) {
   resultsGrid.innerHTML = "";
 
-  // Update the subtitle
   const topicDisplay = prefs.topic || "your interests";
   resultsSummary.textContent =
     `Top ${recommendations.length} picks for ${topicDisplay} · ${prefs.level} · ${prefs.duration} course`;
 
   recommendations.forEach((course, index) => {
-    const card = buildCard(course, index + 1);
-    resultsGrid.appendChild(card);
-    // Stagger animation delay — each card appears slightly after the previous
-    card.style.animationDelay = `${index * 0.1}s`;
+    const cardContainer = buildCard(course, index + 1);
+    resultsGrid.appendChild(cardContainer);
+    cardContainer.style.animationDelay = `${index * 0.1}s`;
+    
+    // Toggle Flip & Expand on Click
+    cardContainer.addEventListener("click", function(e) {
+      if (e.target.tagName === 'A') return; // Don't flip if clicking a link
+      
+      const isExpanded = this.classList.contains('is-expanded');
+      
+      // Close all other expanded cards
+      document.querySelectorAll('.result-card-container').forEach(c => {
+        c.classList.remove('is-expanded', 'is-flipped');
+      });
+      
+      if (!isExpanded) {
+        this.classList.add('is-expanded', 'is-flipped');
+        setTimeout(() => {
+          this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+    });
   });
 
-  // Show results section
   resultsSection.classList.remove("hidden");
   setTimeout(() => {
     resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
   }, 100);
 }
 
-/* ── Build a single recommendation card ─────────────────────────────────── */
+/* ── Build a single recommendation card (3D Flip Structure) ─────────────── */
 function buildCard(course, rank) {
-  const card = document.createElement("div");
-  card.className = "result-card";
+  const container = document.createElement("div");
+  container.className = "result-card-container";
 
-  // Calculate similarity percentage for the ring chart (0.0–1.0 → 0–100%)
   const simPct   = Math.min(Math.round((course.similarity || 0) * 100), 100);
   const simLabel = `${simPct}%`;
   const stars    = buildStars(course.rating);
   const emoji    = CATEGORY_EMOJI[course.category.toLowerCase()] || "📚";
   const tagList  = (course.tags || "").split(" ").slice(0, 6).join(" · ");
+  const roadmap  = generateRoadmap(course);
 
-  card.innerHTML = `
-    <div class="card-rank">${rank}</div>
-    <div class="card-body">
-      <div class="card-title">${emoji} ${escapeHTML(course.title)}</div>
-      <div class="card-meta">
-        <span class="badge badge-category">${escapeHTML(course.category)}</span>
-        <span class="badge badge-level">${escapeHTML(course.level)}</span>
-        <span class="badge badge-duration">⏱ ${escapeHTML(course.duration)}</span>
-        <span class="badge" style="background: rgba(255,255,255,0.1); color: #fff;">🏢 ${escapeHTML(course.platform)}</span>
-      </div>
-      
-      <div class="card-links" style="margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px;">
-        <a href="${course.course_link}" target="_blank" style="text-decoration: none; font-size: 0.8rem; font-weight: 700; background: var(--grad-primary); color: #fff; padding: 6px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🔗 View Course</a>
-        <a href="${course.youtube_tamil}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🇮🇳 Tamil YT</a>
-        <a href="${course.youtube_english}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🇺🇸 English YT</a>
-      </div>
-
-      <div class="card-rating">
-        ${stars}
-        <span style="color:#e8eaf6;margin-left:4px;">${course.rating}</span>
-      </div>
-      <div class="card-tags" title="${escapeHTML(course.tags || '')}">
-        🏷 ${tagList || "No tags"}
+  const roadmapHTML = roadmap.map(step => `
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>${step.title}</h4>
+        <p>${step.desc}</p>
       </div>
     </div>
-    <div class="card-similarity">
-      <div class="sim-ring" style="--pct:${simPct}">
-        <span class="sim-value">${simLabel}</span>
+  `).join('');
+
+  container.innerHTML = `
+    <div class="result-card-inner">
+      <!-- FRONT FACE -->
+      <div class="result-card-front">
+        <div class="card-rank">${rank}</div>
+        <div class="card-body">
+          <div class="card-title">${emoji} ${escapeHTML(course.title)}</div>
+          <div class="card-meta">
+            <span class="badge badge-category">${escapeHTML(course.category)}</span>
+            <span class="badge badge-level">${escapeHTML(course.level)}</span>
+            <span class="badge badge-duration">⏱ ${escapeHTML(course.duration)}</span>
+            <span class="badge" style="background: rgba(255,255,255,0.1); color: #fff;">🏢 ${escapeHTML(course.platform)}</span>
+          </div>
+          
+          <div class="card-links" style="margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+            <a href="${course.course_link}" target="_blank" style="text-decoration: none; font-size: 0.8rem; font-weight: 700; background: var(--grad-primary); color: #fff; padding: 6px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🔗 View Course</a>
+          </div>
+
+          <div class="card-rating">
+            ${stars} <span style="color:#e8eaf6;margin-left:4px;">${course.rating}</span>
+          </div>
+          <div class="card-tags" style="font-size: 0.7rem; color: var(--clr-muted); margin-top: 5px;">
+            Click to see study roadmap →
+          </div>
+        </div>
+        <div class="card-similarity">
+          <div class="sim-ring" style="--pct:${simPct}">
+            <span class="sim-value">${simLabel}</span>
+          </div>
+          <span class="sim-label">Match</span>
+        </div>
       </div>
-      <span class="sim-label">Match</span>
+
+      <!-- BACK FACE -->
+      <div class="result-card-back">
+        <div class="roadmap-title">
+          <span>📍</span> Study Roadmap: ${escapeHTML(course.title)}
+        </div>
+        <div class="roadmap-container">
+          <div class="timeline">
+            ${roadmapHTML}
+          </div>
+        </div>
+        <div class="back-footer">
+          <div class="card-links" style="display: flex; gap: 8px;">
+            <a href="${course.youtube_tamil}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px;">🇮🇳 Tamil YT</a>
+            <a href="${course.youtube_english}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px;">🇺🇸 English YT</a>
+          </div>
+          <button class="close-details">Close Details</button>
+        </div>
+      </div>
     </div>
   `;
 
-  return card;
+  return container;
 }
 
 /* ── Build star rating HTML ──────────────────────────────────────────────── */

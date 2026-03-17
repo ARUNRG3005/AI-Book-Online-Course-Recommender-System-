@@ -72,7 +72,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--clr-bg);color:var
 .radio-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 12px;background:rgba(255,255,255,.03);border:1.5px solid var(--clr-border);border-radius:var(--radius-md);cursor:pointer;transition:border-color var(--transition),background var(--transition),transform var(--transition);text-align:center;}
 .radio-card input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
 .radio-card:hover{border-color:rgba(124,111,247,.5);background:rgba(124,111,247,.07);transform:translateY(-2px);}
-.radio-card:has(input:checked){border-color:var(--clr-primary);background:rgba(124,111,247,.14);box-shadow:0 0 0 3px rgba(124,111,247,.18);}
+.radio-card:has(input:checked){border-color:var(--clr-primary);background:rgba(124,111,247,0.14);box-shadow:0 0 0 3px rgba(124,111,247,.18);}
 .radio-icon{font-size:1.6rem;}.radio-label{font-size:.85rem;font-weight:600;}
 
 /* ════ DURATION ════════════════════════════════════════════════════════════ */
@@ -98,9 +98,62 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--clr-bg);color:var
 .results-header{text-align:center;margin-bottom:28px;}
 .results-title{font-size:1.75rem;font-weight:800;}
 .results-subtitle{color:var(--clr-muted);font-size:.9rem;margin-top:6px;}
-.results-grid{display:grid;grid-template-columns:1fr;gap:16px;}
-.result-card{background:var(--clr-card-bg);border:1px solid var(--clr-border);border-radius:var(--radius-lg);padding:24px 28px;display:flex;align-items:flex-start;gap:20px;backdrop-filter:blur(16px);box-shadow:var(--shadow-card);opacity:0;transform:translateY(20px);animation:cardReveal .5s ease forwards;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
-.result-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.55),var(--shadow-glow);border-color:rgba(124,111,247,.3);}
+.results-grid{display:grid;grid-template-columns:1fr;gap:24px;perspective:1500px;}
+
+/* ─── Result Card: 3D Flip & Details ────────────────────────────────────── */
+.result-card-container {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  perspective: 1500px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardReveal 0.5s ease forwards;
+}
+.result-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+.result-card-container.is-flipped .result-card-inner {
+  transform: rotateY(180deg);
+}
+.result-card-front, .result-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--clr-card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--clr-border);
+  box-shadow: var(--shadow-card);
+}
+.result-card-front {
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 28px;
+}
+.result-card-back {
+  transform: rotateY(180deg);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+.result-card-container.is-expanded {
+  grid-column: 1 / -1;
+  min-height: 480px;
+}
+
+/* ── Card Elements ── */
 .card-rank{flex-shrink:0;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);font-size:1.1rem;font-weight:800;background:var(--grad-primary);color:#fff;box-shadow:0 4px 16px rgba(124,111,247,.35);}
 .card-body{flex:1;min-width:0;}
 .card-title{font-size:1.05rem;font-weight:700;margin-bottom:8px;line-height:1.3;}
@@ -110,12 +163,26 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--clr-bg);color:var
 .badge-level{background:rgba(52,211,153,.15);color:var(--clr-success);border:1px solid rgba(52,211,153,.25);}
 .badge-duration{background:rgba(56,189,248,.13);color:var(--clr-accent);border:1px solid rgba(56,189,248,.25);}
 .card-rating{display:flex;align-items:center;gap:5px;font-size:.85rem;font-weight:600;color:var(--clr-warning);margin-bottom:10px;}
-.card-tags{font-size:.75rem;color:var(--clr-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.card-tags{font-size:.7rem;color:var(--clr-muted);overflow:hidden;text-overflow:ellipsis;}
+
 .card-similarity{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:2px;}
 .sim-ring{width:56px;height:56px;border-radius:50%;background:conic-gradient(var(--clr-primary) calc(var(--pct)*1%),rgba(255,255,255,.06) 0%);display:flex;align-items:center;justify-content:center;position:relative;}
 .sim-ring::before{content:'';width:44px;height:44px;border-radius:50%;background:var(--clr-card-bg);position:absolute;}
 .sim-value{position:relative;z-index:1;font-size:.75rem;font-weight:700;color:var(--clr-primary-2);}
 .sim-label{font-size:.62rem;color:var(--clr-muted);text-transform:uppercase;letter-spacing:.05em;}
+
+/* ── Roadmap ── */
+.roadmap-container{margin-top:15px;flex:1;overflow-y:auto;padding-right:8px;}
+.roadmap-title{font-size:1.1rem;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:10px;color:var(--clr-primary-2);}
+.timeline{position:relative;padding-left:30px;}
+.timeline::before{content:'';position:absolute;left:10px;top:5px;bottom:5px;width:2px;background:var(--clr-border);}
+.timeline-item{position:relative;margin-bottom:24px;}
+.timeline-dot{position:absolute;left:-26px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--clr-primary);border:2px solid var(--clr-bg);box-shadow:0 0 10px rgba(124,111,247,0.5);}
+.timeline-content h4{font-size:0.9rem;font-weight:700;color:var(--clr-text);margin-bottom:4px;}
+.timeline-content p{font-size:0.8rem;color:var(--clr-muted);}
+.back-footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:15px;border-top:1px solid var(--clr-border);}
+.close-details{background:transparent;border:1px solid var(--clr-border);color:var(--clr-muted);font-size:0.75rem;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;}
+
 .btn-retry{display:block;margin:28px auto 0;background:transparent;border:1.5px solid var(--clr-border);color:var(--clr-muted);font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;padding:10px 24px;border-radius:100px;cursor:pointer;transition:color var(--transition),border-color var(--transition);}
 .btn-retry:hover{color:var(--clr-text);border-color:var(--clr-primary);}
 .error-box{display:flex;align-items:center;gap:12px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);border-radius:var(--radius-md);padding:16px 20px;margin-top:20px;font-size:.9rem;color:var(--clr-error);}
@@ -125,7 +192,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--clr-bg);color:var
 @keyframes fadeSlideDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeSlideUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 @keyframes cardReveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:600px){.form-card{padding:28px 20px;}.radio-group{gap:8px;}.radio-card{padding:12px 6px;}.radio-icon{font-size:1.3rem;}.radio-label{font-size:.75rem;}.duration-group{gap:8px;}.result-card{flex-direction:column;gap:14px;}.card-similarity{flex-direction:row;justify-content:flex-start;}}
+@media(max-width:600px){.form-card{padding:28px 20px;}.radio-group{gap:8px;}.result-card-front{flex-direction:column;gap:14px;}.result-card-container.is-expanded{min-height:600px;}}
   </style>
 </head>
 <body>
@@ -231,7 +298,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--clr-bg);color:var
 
 <script>
 /* ════════════════════════════════════════════════════════════════════════════
-   EMBEDDED DATASET — 50 courses with full metadata
+   EMBEDDED DATASET — 50 courses
    ════════════════════════════════════════════════════════════════════════════ */
 const COURSES = [
   {id:1,title:"AI Fundamentals",category:"ai",level:"beginner",duration:"short",rating:4.7,tags:"artificial intelligence basics introduction concepts",platform:"Coursera",course_link:"https://www.coursera.org/learn/ai-for-everyone",youtube_tamil:"https://youtu.be/JMUxmLyrhSk",youtube_english:"https://youtu.be/2ePf9rue1Ao"},
@@ -286,9 +353,6 @@ const COURSES = [
   {id:50,title:"Digital Forensics",category:"cybersecurity",level:"advanced",duration:"long",rating:4.8,tags:"digital forensics investigation security advanced",platform:"Coursera",course_link:"https://www.coursera.org/learn/digital-forensics",youtube_tamil:"https://youtu.be/2r7pH4YkZ2Y",youtube_english:"https://youtu.be/2r7pH4YkZ2Y"},
 ];
 
-/* ════════════════════════════════════════════════════════════════════════════
-   GOAL → KEYWORD MAPPING
-   ════════════════════════════════════════════════════════════════════════════ */
 const GOAL_KEYWORDS = {
   "get a job":         "career job interview practical hands-on",
   "improve skills":    "improve practice projects hands-on skills",
@@ -302,90 +366,71 @@ const CATEGORY_EMOJI = {
 /* ════════════════════════════════════════════════════════════════════════════
    SIMPLE TF-IDF + COSINE SIMILARITY (pure JS)
    ════════════════════════════════════════════════════════════════════════════ */
-
-/** Tokenise and clean a string → array of words */
 function tokenise(text) {
   const STOP = new Set(["the","a","an","and","or","is","in","of","to","for","with","on","at","by","from","as","this","that","are","was","be"]);
-  return text.toLowerCase()
-    .replace(/[^a-z0-9 ]/g, " ")
-    .split(/\s+/)
-    .filter(w => w.length > 1 && !STOP.has(w));
+  return text.toLowerCase().replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(w=>w.length>1 && !STOP.has(w));
 }
-
-/** Build TF-IDF vocabulary and vectors for the corpus + query */
 function buildTFIDF(docs) {
   const N = docs.length;
-  // Term frequency per doc
   const tfList = docs.map(tokens => {
-    const tf = {};
-    tokens.forEach(t => { tf[t] = (tf[t]||0)+1; });
-    const len = tokens.length || 1;
-    Object.keys(tf).forEach(k => tf[k] /= len);
+    const tf = {}; tokens.forEach(t => { tf[t]=(tf[t]||0)+1; });
+    const len = tokens.length || 1; Object.keys(tf).forEach(k => tf[k]/=len);
     return tf;
   });
-  // Document frequency
-  const df = {};
-  tfList.forEach(tf => Object.keys(tf).forEach(k => { df[k]=(df[k]||0)+1; }));
-  // Build vocab (terms appearing in at most N-1 docs, i.e. not in every doc)
+  const df = {}; tfList.forEach(tf => Object.keys(tf).forEach(k => { df[k]=(df[k]||0)+1; }));
   const vocab = Object.keys(df).filter(k => df[k] < N);
-  // TF-IDF vectors
-  const vectors = tfList.map(tf => {
-    return vocab.map(k => (tf[k]||0) * Math.log((N+1)/(df[k]||1)+1));
-  });
+  const vectors = tfList.map(tf => vocab.map(k => (tf[k]||0) * Math.log((N+1)/(df[k]||1)+1)));
   return { vocab, vectors };
 }
-
-/** Cosine similarity between two equal-length arrays */
 function cosineSim(a, b) {
   let dot=0, normA=0, normB=0;
   for(let i=0;i<a.length;i++){ dot+=a[i]*b[i]; normA+=a[i]*a[i]; normB+=b[i]*b[i]; }
   const denom = Math.sqrt(normA)*Math.sqrt(normB);
   return denom===0 ? 0 : dot/denom;
 }
-
-/** Main recommendation function */
 function recommend(prefs, topN=5) {
   const { topic, level, goal, duration } = prefs;
-
-  // Build corpus: one document per course (tags + category + level + duration)
   const corpus = COURSES.map(c => `${c.tags} ${c.category} ${c.level} ${c.duration}`);
-
-  // Build query document
   const goalKW = GOAL_KEYWORDS[goal] || goal;
   const query  = `${topic} ${topic} ${level} ${duration} ${goalKW}`;
-
-  // Tokenise everything
   const corpusTokens = corpus.map(tokenise);
   const queryTokens  = tokenise(query);
-
-  // Fit TF-IDF on corpus + query together
   const { vocab, vectors } = buildTFIDF([...corpusTokens, queryTokens]);
   const courseVecs = vectors.slice(0, COURSES.length);
   const queryVec   = vectors[COURSES.length];
-
-  // Score each course
   const scored = COURSES.map((course, i) => {
     let score = cosineSim(queryVec, courseVecs[i]);
-    // Score bonuses for exact matches
-    if(course.category === topic)    score += 0.30;
-    if(course.level    === level)    score += 0.20;
+    if(course.category === topic) score += 0.30;
+    if(course.level === level) score += 0.20;
     if(course.duration === duration) score += 0.15;
     return { ...course, score };
   });
-
-  // Sort by score desc, then rating desc
-  return scored
-    .sort((a,b) => b.score - a.score || b.rating - a.rating)
-    .slice(0, topN)
-    .map(c => ({
-      ...c,
-      similarity: Math.min(Math.round(c.score*100), 99),
-    }));
+  return scored.sort((a,b)=>b.score-a.score || b.rating-a.rating).slice(0, topN).map(c=>({...c, similarity: Math.min(Math.round(c.score*100),99)}));
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   UI LOGIC
+   UI LOGIC & ROADMAP
    ════════════════════════════════════════════════════════════════════════════ */
+function generateRoadmap(course) {
+  const dur = course.duration.toLowerCase();
+  const cat = course.category.toLowerCase();
+  const steps = [
+    { title: "Foundation & Setup", desc: `Install tools for ${cat} and learn basic syntax.` },
+    { title: "Core Concepts", desc: `Deep dive into ${cat} fundamentals and primary modules.` },
+  ];
+  if(dur === "short"){
+    steps.push({ title: "Quick Project", desc: "Build a mini-application to apply your knowledge." });
+  } else if(dur === "medium"){
+    steps.push({ title: "Intermediate Build", desc: "Develop a functional portfolio project." });
+    steps.push({ title: "Final Assessment", desc: "Complete a comprehensive skill test." });
+  } else {
+    steps.push({ title: "Advanced Architecture", desc: "Master scaling and industry standards." });
+    steps.push({ title: "Real-world Deployment", desc: "Deploy a full-scale app to production." });
+    steps.push({ title: "Specialization", desc: "Focus on industry-specific use cases." });
+  }
+  return steps;
+}
+
 const form           = document.getElementById("recommendForm");
 const submitBtn      = document.getElementById("submitBtn");
 const btnText        = submitBtn.querySelector(".btn-text");
@@ -394,106 +439,93 @@ const resultsSection = document.getElementById("resultsSection");
 const resultsGrid    = document.getElementById("resultsGrid");
 const resultsSummary = document.getElementById("resultsSummary");
 const retryBtn       = document.getElementById("retryBtn");
-const errorBox       = document.getElementById("errorBox");
-const errorMessage   = document.getElementById("errorMessage");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const topic    = document.getElementById("topic").value;
-  const levelEl  = document.querySelector('input[name="level"]:checked');
-  const goalEl   = document.querySelector('input[name="goal"]:checked');
-  const durEl    = document.querySelector('input[name="duration"]:checked');
-  const level    = levelEl  ? levelEl.value  : "";
-  const goal     = goalEl   ? goalEl.value   : "";
-  const duration = durEl    ? durEl.value    : "";
+  const topic = document.getElementById("topic").value;
+  const level = (document.querySelector('input[name="level"]:checked')||{}).value;
+  const goal = (document.querySelector('input[name="goal"]:checked')||{}).value;
+  const duration = (document.querySelector('input[name="duration"]:checked')||{}).value;
+  
+  if(!topic || !level || !goal || !duration) return alert("Fill all fields");
 
-  // Validate
-  const errors = {};
-  if(!topic)    errors.topic    = "Please select a topic.";
-  if(!level)    errors.level    = "Please choose your skill level.";
-  if(!goal)     errors.goal     = "Please choose a learning goal.";
-  if(!duration) errors.duration = "Please choose a course length.";
-  ["topic","level","goal","duration"].forEach(f => {
-    document.getElementById(`error-${f}`).textContent = errors[f]||"";
-  });
-  if(Object.keys(errors).length) return;
-
-  // Loading state
-  submitBtn.disabled = true;
-  btnText.classList.add("hidden");
-  spinner.classList.remove("hidden");
-  resultsSection.classList.add("hidden");
-  errorBox.classList.add("hidden");
-
-  // Small delay for UX, then compute
+  submitBtn.disabled = true; btnText.classList.add("hidden"); spinner.classList.remove("hidden");
+  
   setTimeout(() => {
-    try {
-      const results = recommend({ topic, level, goal, duration });
-      if(!results.length){ showError("No results found. Try different preferences!"); return; }
-      renderResults(results, { topic, level, goal, duration });
-    } catch(err) {
-      showError("Recommendation failed: " + err.message);
-    } finally {
-      submitBtn.disabled = false;
-      btnText.classList.remove("hidden");
-      spinner.classList.add("hidden");
-    }
+    const results = recommend({ topic, level, goal, duration });
+    renderResults(results, { topic, level, goal, duration });
+    submitBtn.disabled = false; btnText.classList.remove("hidden"); spinner.classList.add("hidden");
   }, 600);
 });
 
-retryBtn.addEventListener("click", () => {
-  resultsSection.classList.add("hidden");
-  form.scrollIntoView({ behavior:"smooth" });
-});
+retryBtn.addEventListener("click", () => { resultsSection.classList.add("hidden"); window.scrollTo(0,0); });
 
 function renderResults(recs, prefs) {
   resultsGrid.innerHTML = "";
   const topicNames = { ai:"Artificial Intelligence", programming:"Programming", "data science":"Data Science", "web development":"Web Development", cybersecurity:"Cybersecurity" };
   resultsSummary.textContent = `Top ${recs.length} picks for ${topicNames[prefs.topic]||prefs.topic} · ${cap(prefs.level)} · ${cap(prefs.duration)} course`;
+  
   recs.forEach((c, i) => {
-    const card = buildCard(c, i+1);
-    card.style.animationDelay = `${i*0.1}s`;
-    resultsGrid.appendChild(card);
+    const container = buildCard(c, i+1);
+    resultsGrid.appendChild(container);
+    container.style.animationDelay = `${i*0.1}s`;
+    
+    container.addEventListener("click", function(e) {
+      if(e.target.tagName === 'A') return;
+      const isExpanded = this.classList.contains('is-expanded');
+      document.querySelectorAll('.result-card-container').forEach(card => card.classList.remove('is-expanded','is-flipped'));
+      if(!isExpanded) {
+        this.classList.add('is-expanded','is-flipped');
+        setTimeout(() => this.scrollIntoView({ behavior:'smooth', block:'center' }), 300);
+      }
+    });
   });
   resultsSection.classList.remove("hidden");
-  setTimeout(() => resultsSection.scrollIntoView({ behavior:"smooth" }), 100);
 }
 
 function buildCard(c, rank) {
-  const div = document.createElement("div");
-  div.className = "result-card";
-  const pct   = c.similarity;
-  const emoji = CATEGORY_EMOJI[c.category] || "📚";
+  const container = document.createElement("div");
+  container.className = "result-card-container";
+  const pct = c.similarity;
   const stars = "★".repeat(Math.floor(c.rating)) + (c.rating%1>=.5?"½":"") + "☆".repeat(5-Math.ceil(c.rating));
-  const tags  = c.tags.split(" ").slice(0,5).join(" · ");
-  div.innerHTML = `
-    <div class="card-rank">${rank}</div>
-    <div class="card-body">
-      <div class="card-title">${emoji} ${esc(cap(c.title))}</div>
-      <div class="card-meta">
-        <span class="badge badge-category">${esc(cap(c.category))}</span>
-        <span class="badge badge-level">${esc(cap(c.level))}</span>
-        <span class="badge badge-duration">⏱ ${esc(cap(c.duration))}</span>
-        <span class="badge" style="background: rgba(255,255,255,0.1); color: #fff;">🏢 ${esc(c.platform)}</span>
-      </div>
-      
-      <div class="card-links" style="margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px;">
-        <a href="${c.course_link}" target="_blank" style="text-decoration: none; font-size: 0.8rem; font-weight: 700; background: var(--grad-primary); color: #fff; padding: 6px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🔗 View Course</a>
-        <a href="${c.youtube_tamil}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🇮🇳 Tamil YT</a>
-        <a href="${c.youtube_english}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🇺🇸 English YT</a>
-      </div>
+  const roadmap = generateRoadmap(c);
+  const roadmapHTML = roadmap.map(s => `<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h4>${s.title}</h4><p>${s.desc}</p></div></div>`).join('');
 
-      <div class="card-rating">${stars} <span style="color:#e8eaf6;margin-left:4px;">${c.rating}</span></div>
-      <div class="card-tags">🏷 ${esc(tags)}</div>
-    </div>
-    <div class="card-similarity">
-      <div class="sim-ring" style="--pct:${pct}"><span class="sim-value">${pct}%</span></div>
-      <span class="sim-label">Match</span>
+  container.innerHTML = `
+    <div class="result-card-inner">
+      <div class="result-card-front">
+        <div class="card-rank">${rank}</div>
+        <div class="card-body">
+          <div class="card-title">${CATEGORY_EMOJI[c.category]||"📚"} ${esc(c.title)}</div>
+          <div class="card-meta">
+            <span class="badge badge-category">${esc(cap(c.category))}</span>
+            <span class="badge badge-level">${esc(cap(c.level))}</span>
+            <span class="badge badge-duration">⏱ ${esc(cap(c.duration))}</span>
+            <span class="badge" style="background:rgba(255,255,255,0.1);color:#fff;">🏢 ${esc(c.platform)}</span>
+          </div>
+          <div class="card-links" style="margin:12px 0;"><a href="${c.course_link}" target="_blank" style="text-decoration:none;font-size:0.8rem;font-weight:700;background:var(--grad-primary);color:#fff;padding:6px 12px;border-radius:6px;">🔗 View Course</a></div>
+          <div class="card-rating" style="color:#fbbf24;">${stars} <span style="color:#e8eaf6;margin-left:4px;">${c.rating}</span></div>
+          <div class="card-tags" style="font-size:0.7rem;color:#6b7280;margin-top:5px;">Click to see study roadmap →</div>
+        </div>
+        <div class="card-similarity">
+          <div class="sim-ring" style="--pct:${pct}"><span class="sim-value">${pct}%</span></div>
+          <span class="sim-label">Match</span>
+        </div>
+      </div>
+      <div class="result-card-back">
+        <div class="roadmap-title">📚 Study Roadmap: ${esc(c.title)}</div>
+        <div class="roadmap-container"><div class="timeline">${roadmapHTML}</div></div>
+        <div class="back-footer">
+          <div style="display:flex;gap:8px;">
+            <a href="${c.youtube_tamil}" target="_blank" style="text-decoration:none;font-size:0.7rem;background:rgba(255,0,0,0.1);color:#ff4d4d;padding:5px 10px;border-radius:6px;border:1px solid rgba(255,0,0,0.2);">🇮🇳 Tamil YT</a>
+            <a href="${c.youtube_english}" target="_blank" style="text-decoration:none;font-size:0.7rem;background:rgba(255,0,0,0.1);color:#ff4d4d;padding:5px 10px;border-radius:6px;border:1px solid rgba(255,0,0,0.2);">🇺🇸 English YT</a>
+          </div>
+          <button class="close-details" style="border:1px solid var(--clr-border);color:var(--clr-muted);font-size:0.7rem;padding:4px 10px;border-radius:6px;background:transparent;">Close</button>
+        </div>
+      </div>
     </div>`;
-  return div;
+  return container;
 }
-
-function showError(msg){ errorMessage.textContent=msg; errorBox.classList.remove("hidden"); }
 function cap(s){ return s?s.replace(/\b\w/g,c=>c.toUpperCase()):""; }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 </script>
