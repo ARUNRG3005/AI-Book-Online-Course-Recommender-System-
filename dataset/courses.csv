@@ -1,51 +1,51 @@
-id,title,category,level,duration,rating,tags
-1,AI Fundamentals,AI,Beginner,Short,4.7,artificial intelligence basics introduction concepts
-2,Machine Learning for Beginners,AI,Beginner,Medium,4.8,machine learning supervised unsupervised beginner
-3,Deep Learning Basics,AI,Beginner,Short,4.5,deep learning neural networks introduction
-4,Python for Machine Learning,AI,Beginner,Short,4.9,python programming machine learning beginner
-5,Intro to Data Science,Data Science,Beginner,Short,4.6,data science introduction analytics beginner
-6,Neural Networks Explained,AI,Intermediate,Medium,4.7,neural networks deep learning intermediate
-7,Natural Language Processing,AI,Intermediate,Medium,4.6,nlp text processing language models
-8,Computer Vision with OpenCV,AI,Intermediate,Medium,4.5,computer vision image processing opencv
-9,Reinforcement Learning,AI,Advanced,Long,4.8,reinforcement learning agents policy optimization advanced
-10,Advanced Deep Learning,AI,Advanced,Long,4.9,deep learning transformers advanced research
-11,Python Programming Basics,Programming,Beginner,Short,4.7,python basics syntax beginner programming
-12,Java for Beginners,Programming,Beginner,Short,4.5,java beginner programming fundamentals
-13,C++ Programming Fundamentals,Programming,Beginner,Medium,4.4,c++ programming fundamentals beginner
-14,JavaScript Essentials,Programming,Beginner,Short,4.6,javascript web beginner programming essentials
-15,Object-Oriented Programming,Programming,Intermediate,Medium,4.7,oop object oriented design patterns intermediate
-16,Data Structures and Algorithms,Programming,Intermediate,Long,4.9,data structures algorithms problem solving intermediate
-17,Design Patterns in Python,Programming,Intermediate,Medium,4.6,design patterns python software engineering
-18,System Design Fundamentals,Programming,Advanced,Long,4.8,system design scalability architecture advanced
-19,Clean Code Principles,Programming,Intermediate,Medium,4.7,clean code refactoring best practices software
-20,Competitive Programming,Programming,Advanced,Long,4.6,competitive programming algorithms problem solving
-21,Data Analysis with Pandas,Data Science,Beginner,Short,4.8,pandas data analysis python beginner
-22,Statistics for Data Science,Data Science,Beginner,Medium,4.6,statistics probability data science beginner
-23,Data Visualization with Matplotlib,Data Science,Beginner,Short,4.5,matplotlib visualization charts data beginner
-24,SQL for Data Science,Data Science,Beginner,Short,4.7,sql database queries data beginner
-25,Machine Learning with Scikit-learn,Data Science,Intermediate,Medium,4.8,scikit-learn machine learning models intermediate
-26,Big Data with Spark,Data Science,Intermediate,Medium,4.6,spark big data processing intermediate
-27,Feature Engineering Techniques,Data Science,Intermediate,Medium,4.7,feature engineering preprocessing data science
-28,Advanced Analytics and Forecasting,Data Science,Advanced,Long,4.8,forecasting time series analytics advanced
-29,Applied Data Science Projects,Data Science,Advanced,Long,4.9,data science projects portfolio advanced
-30,HTML and CSS Basics,Web Development,Beginner,Short,4.6,html css web design beginner basics
-31,JavaScript for Web Development,Web Development,Beginner,Short,4.7,javascript web frontend beginner
-32,Responsive Web Design,Web Development,Beginner,Short,4.5,responsive design css flexbox grid beginner
-33,React JS Fundamentals,Web Development,Intermediate,Medium,4.8,react javascript frontend intermediate components
-34,Node.js and Express,Web Development,Intermediate,Medium,4.7,nodejs express backend api intermediate
-35,Full Stack Web Development,Web Development,Intermediate,Long,4.9,full stack html css js react node intermediate
-36,REST API Design,Web Development,Intermediate,Medium,4.6,rest api design backend web development
-37,Vue.js Complete Guide,Web Development,Intermediate,Medium,4.5,vuejs javascript frontend framework intermediate
-38,Next.js and Server-Side Rendering,Web Development,Advanced,Long,4.8,nextjs ssr react advanced web
-39,Web Performance Optimization,Web Development,Advanced,Medium,4.7,performance optimization web advanced
-40,Cybersecurity Basics,Cybersecurity,Beginner,Short,4.6,cybersecurity basics introduction security beginner
-41,Ethical Hacking for Beginners,Cybersecurity,Beginner,Medium,4.7,ethical hacking penetration testing beginner
-42,Network Security Fundamentals,Cybersecurity,Beginner,Short,4.5,network security protocols fundamentals beginner
-43,Linux for Security Professionals,Cybersecurity,Intermediate,Medium,4.6,linux command line security intermediate
-44,Penetration Testing with Kali Linux,Cybersecurity,Intermediate,Long,4.8,penetration testing kali linux intermediate
-45,Web Application Security,Cybersecurity,Intermediate,Medium,4.7,web security owasp vulnerabilities intermediate
-46,Malware Analysis and Reverse Engineering,Cybersecurity,Advanced,Long,4.8,malware analysis reverse engineering advanced
-47,Advanced Threat Intelligence,Cybersecurity,Advanced,Long,4.9,threat intelligence advanced security analysis
-48,Cryptography and Encryption,Cybersecurity,Advanced,Long,4.7,cryptography encryption security advanced mathematics
-49,Cloud Security on AWS,Cybersecurity,Advanced,Medium,4.6,cloud security aws advanced infrastructure
-50,Digital Forensics,Cybersecurity,Advanced,Long,4.8,digital forensics investigation security advanced
+id,title,category,level,duration,rating,tags,platform,course_link,youtube_tamil,youtube_english
+1,AI Fundamentals,AI,Beginner,Short,4.7,artificial intelligence basics introduction concepts,Coursera,https://www.coursera.org/learn/ai-for-everyone,https://youtu.be/JMUxmLyrhSk,https://youtu.be/2ePf9rue1Ao
+2,Machine Learning for Beginners,AI,Beginner,Medium,4.8,machine learning supervised unsupervised beginner,Coursera,https://www.coursera.org/learn/machine-learning,https://youtu.be/ukzFI9rgwfU,https://youtu.be/Gv9_4yMHFhI
+3,Deep Learning Basics,AI,Beginner,Short,4.5,deep learning neural networks introduction,DeepLearning.AI,https://www.deeplearning.ai/courses/deep-learning-specialization,https://youtu.be/aircAruvnKk,https://youtu.be/6M5VXKLf4D4
+4,Python for Machine Learning,AI,Beginner,Short,4.9,python programming machine learning beginner,Udemy,https://www.udemy.com/course/python-for-machine-learning,https://youtu.be/m67-bOpOoPU,https://youtu.be/rfscVS0vtbw
+5,Intro to Data Science,Data Science,Beginner,Short,4.6,data science introduction analytics beginner,Coursera,https://www.coursera.org/learn/what-is-datascience,https://youtu.be/X3paOmcrTjQ,https://youtu.be/ua-CiDNNj30
+6,Neural Networks Explained,AI,Intermediate,Medium,4.7,neural networks deep learning intermediate,Coursera,https://www.coursera.org/learn/neural-networks-deep-learning,https://youtu.be/aircAruvnKk,https://youtu.be/aircAruvnKk
+7,Natural Language Processing,AI,Intermediate,Medium,4.6,nlp text processing language models,Coursera,https://www.coursera.org/specializations/natural-language-processing,https://youtu.be/CMrHM8a3hqw,https://youtu.be/fOvTtapxa9c
+8,Computer Vision with OpenCV,AI,Intermediate,Medium,4.5,computer vision image processing opencv,Udemy,https://www.udemy.com/course/opencv-python,https://youtu.be/7ov4m3cY8n0,https://youtu.be/oXlwWbU8l2o
+9,Reinforcement Learning,AI,Advanced,Long,4.8,reinforcement learning agents policy optimization advanced,Coursera,https://www.coursera.org/specializations/reinforcement-learning,https://youtu.be/nyjbcRQ-uQ8,https://youtu.be/2pWv7GOvuf0
+10,Advanced Deep Learning,AI,Advanced,Long,4.9,deep learning transformers advanced research,DeepLearning.AI,https://www.deeplearning.ai/courses/deep-learning-specialization,https://youtu.be/7sB052Pz0sQ,https://youtu.be/VyWAvY2CF9c
+11,Python Programming Basics,Programming,Beginner,Short,4.7,python basics syntax beginner programming,Udemy,https://www.udemy.com/course/python-for-beginners,https://youtu.be/cGbytJvqyI8,https://youtu.be/K5KVEU3aaeQ
+12,Java for Beginners,Programming,Beginner,Short,4.5,java beginner programming fundamentals,Udemy,https://www.udemy.com/course/java-tutorial,https://youtu.be/grEKMHGYyns,https://youtu.be/eIrMbAQSU34
+13,C++ Programming Fundamentals,Programming,Beginner,Medium,4.4,c++ programming fundamentals beginner,Udemy,https://www.udemy.com/course/cplusplus,https://youtu.be/vLnPwxZdW4Y,https://youtu.be/ZzaPdXTrSb8
+14,JavaScript Essentials,Programming,Beginner,Short,4.6,javascript web beginner programming essentials,Udemy,https://www.udemy.com/course/javascript-beginners,https://youtu.be/R0A2GkQ0n5E,https://youtu.be/W6NZfCO5SIk
+15,Object-Oriented Programming,Programming,Intermediate,Medium,4.7,oop object oriented design patterns intermediate,Coursera,https://www.coursera.org/learn/object-oriented-design,https://youtu.be/pTB0EiLXUC8,https://youtu.be/O8IuJIT0DbA
+16,Data Structures and Algorithms,Programming,Intermediate,Long,4.9,data structures algorithms problem solving intermediate,Coursera,https://www.coursera.org/specializations/data-structures-algorithms,https://youtu.be/bum_19loj9A,https://youtu.be/RBSGKlAvoiM
+17,Design Patterns in Python,Programming,Intermediate,Medium,4.6,design patterns python software engineering,Udemy,https://www.udemy.com/course/design-patterns-python,https://youtu.be/tv-_1er1mWI,https://youtu.be/v9ejT8FO-7I
+18,System Design Fundamentals,Programming,Advanced,Long,4.8,system design scalability architecture advanced,Educative,https://www.educative.io/courses/grokking-system-design,https://youtu.be/i7twT3x5yv8,https://youtu.be/xpDnVSmNFX0
+19,Clean Code Principles,Programming,Intermediate,Medium,4.7,clean code refactoring best practices software,Udemy,https://www.udemy.com/course/writing-clean-code,https://youtu.be/7EmboKQH8lM,https://youtu.be/NSR-RDg6c1o
+20,Competitive Programming,Programming,Advanced,Long,4.6,competitive programming algorithms problem solving,Udemy,https://www.udemy.com/course/competitive-programming,https://youtu.be/bVKHRtafgPc,https://youtu.be/8hly31xKli0
+21,Data Analysis with Pandas,Data Science,Beginner,Short,4.8,pandas data analysis python beginner,Kaggle,https://www.kaggle.com/learn/pandas,https://youtu.be/vmEHCJofslg,https://youtu.be/vmEHCJofslg
+22,Statistics for Data Science,Data Science,Beginner,Medium,4.6,statistics probability data science beginner,Coursera,https://www.coursera.org/learn/statistics,https://youtu.be/xxpc-HPKN28,https://youtu.be/xxpc-HPKN28
+23,Data Visualization with Matplotlib,Data Science,Beginner,Short,4.5,matplotlib visualization charts data beginner,Kaggle,https://www.kaggle.com/learn/data-visualization,https://youtu.be/UO98lJQ3QGI,https://youtu.be/UO98lJQ3QGI
+24,SQL for Data Science,Data Science,Beginner,Short,4.7,sql database queries data beginner,Coursera,https://www.coursera.org/learn/sql-for-data-science,https://youtu.be/HXV3zeQKqGY,https://youtu.be/HXV3zeQKqGY
+25,Machine Learning with Scikit-learn,Data Science,Intermediate,Medium,4.8,scikit-learn machine learning models intermediate,Udemy,https://www.udemy.com/course/scikit-learn-python,https://youtu.be/0Lt9w-BxKFQ,https://youtu.be/0Lt9w-BxKFQ
+26,Big Data with Spark,Data Science,Intermediate,Medium,4.6,spark big data processing intermediate,Coursera,https://www.coursera.org/learn/big-data-analysis-spark,https://youtu.be/_C8kWso4ne4,https://youtu.be/_C8kWso4ne4
+27,Feature Engineering Techniques,Data Science,Intermediate,Medium,4.7,feature engineering preprocessing data science,Udemy,https://www.udemy.com/course/feature-engineering,https://youtu.be/N9fDIAflCMY,https://youtu.be/N9fDIAflCMY
+28,Advanced Analytics and Forecasting,Data Science,Advanced,Long,4.8,forecasting time series analytics advanced,Coursera,https://www.coursera.org/learn/time-series,https://youtu.be/vV12dGe_Fho,https://youtu.be/vV12dGe_Fho
+29,Applied Data Science Projects,Data Science,Advanced,Long,4.9,data science projects portfolio advanced,Coursera,https://www.coursera.org/specializations/applied-data-science,https://youtu.be/KNAWp2S3w94,https://youtu.be/KNAWp2S3w94
+30,HTML and CSS Basics,Web Development,Beginner,Short,4.6,html css web design beginner basics,freeCodeCamp,https://www.freecodecamp.org/learn/responsive-web-design,https://youtu.be/qz0aGYrrlhU,https://youtu.be/qz0aGYrrlhU
+31,JavaScript for Web Development,Web Development,Beginner,Short,4.7,javascript web frontend beginner,freeCodeCamp,https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures,https://youtu.be/W6NZfCO5SIk,https://youtu.be/W6NZfCO5SIk
+32,Responsive Web Design,Web Development,Beginner,Short,4.5,responsive design css flexbox grid beginner,freeCodeCamp,https://www.freecodecamp.org/learn/responsive-web-design,https://youtu.be/srvUrASNj0s,https://youtu.be/srvUrASNj0s
+33,React JS Fundamentals,Web Development,Intermediate,Medium,4.8,react javascript frontend intermediate components,Udemy,https://www.udemy.com/course/react-the-complete-guide,https://youtu.be/bMknfKXIFA8,https://youtu.be/bMknfKXIFA8
+34,Node.js and Express,Web Development,Intermediate,Medium,4.7,nodejs express backend api intermediate,Udemy,https://www.udemy.com/course/nodejs-express,https://youtu.be/Oe421EPjeBE,https://youtu.be/Oe421EPjeBE
+35,Full Stack Web Development,Web Development,Intermediate,Long,4.9,full stack html css js react node intermediate,Coursera,https://www.coursera.org/professional-certificates/meta-front-end-developer,https://youtu.be/nu_pCVPKzTk,https://youtu.be/nu_pCVPKzTk
+36,REST API Design,Web Development,Intermediate,Medium,4.6,rest api design backend web development,Udemy,https://www.udemy.com/course/rest-api-design,https://youtu.be/Q-BpqyOT3a8,https://youtu.be/Q-BpqyOT3a8
+37,Vue.js Complete Guide,Web Development,Intermediate,Medium,4.5,vuejs javascript frontend framework intermediate,Udemy,https://www.udemy.com/course/vuejs-2-the-complete-guide,https://youtu.be/FXpIoQ_rT_c,https://youtu.be/FXpIoQ_rT_c
+38,Next.js and Server-Side Rendering,Web Development,Advanced,Long,4.8,nextjs ssr react advanced web,Udemy,https://www.udemy.com/course/nextjs-react-the-complete-guide,https://youtu.be/Sklc_fQBmcs,https://youtu.be/Sklc_fQBmcs
+39,Web Performance Optimization,Web Development,Advanced,Medium,4.7,performance optimization web advanced,Google,https://web.dev/learn/performance,https://youtu.be/0fONene3OIA,https://youtu.be/0fONene3OIA
+40,Cybersecurity Basics,Cybersecurity,Beginner,Short,4.6,cybersecurity basics introduction security beginner,Coursera,https://www.coursera.org/learn/cybersecurity-basics,https://youtu.be/inWWhr5tnEA,https://youtu.be/inWWhr5tnEA
+41,Ethical Hacking for Beginners,Cybersecurity,Beginner,Medium,4.7,ethical hacking penetration testing beginner,Udemy,https://www.udemy.com/course/learn-ethical-hacking-from-scratch,https://youtu.be/3Kq1MIfTWCE,https://youtu.be/3Kq1MIfTWCE
+42,Network Security Fundamentals,Cybersecurity,Beginner,Short,4.5,network security protocols fundamentals beginner,Coursera,https://www.coursera.org/learn/network-security,https://youtu.be/kqDgMkpQ-6c,https://youtu.be/kqDgMkpQ-6c
+43,Linux for Security Professionals,Cybersecurity,Intermediate,Medium,4.6,linux command line security intermediate,Udemy,https://www.udemy.com/course/linux-security,https://youtu.be/IVquJh3DXUA,https://youtu.be/IVquJh3DXUA
+44,Penetration Testing with Kali Linux,Cybersecurity,Intermediate,Long,4.8,penetration testing kali linux intermediate,Udemy,https://www.udemy.com/course/kali-linux-penetration-testing,https://youtu.be/WnN6dbos5u8,https://youtu.be/WnN6dbos5u8
+45,Web Application Security,Cybersecurity,Intermediate,Medium,4.7,web security owasp vulnerabilities intermediate,Coursera,https://www.coursera.org/learn/web-security,https://youtu.be/X4eRbHgRawI,https://youtu.be/X4eRbHgRawI
+46,Malware Analysis and Reverse Engineering,Cybersecurity,Advanced,Long,4.8,malware analysis reverse engineering advanced,Coursera,https://www.coursera.org/learn/malware-analysis,https://youtu.be/8ZtInClXe1Q,https://youtu.be/8ZtInClXe1Q
+47,Advanced Threat Intelligence,Cybersecurity,Advanced,Long,4.9,threat intelligence advanced security analysis,Coursera,https://www.coursera.org/learn/threat-intelligence,https://youtu.be/wb2u8ZVtH4Y,https://youtu.be/wb2u8ZVtH4Y
+48,Cryptography and Encryption,Cybersecurity,Advanced,Long,4.7,cryptography encryption security advanced mathematics,Coursera,https://www.coursera.org/learn/crypto,https://youtu.be/6kG0o1kB5p0,https://youtu.be/6kG0o1kB5p0
+49,Cloud Security on AWS,Cybersecurity,Advanced,Medium,4.6,cloud security aws advanced infrastructure,AWS Training,https://aws.amazon.com/training,https://youtu.be/ulprqHHWlng,https://youtu.be/ulprqHHWlng
+50,Digital Forensics,Cybersecurity,Advanced,Long,4.8,digital forensics investigation security advanced,Coursera,https://www.coursera.org/learn/digital-forensics,https://youtu.be/2r7pH4YkZ2Y,https://youtu.be/2r7pH4YkZ2Y

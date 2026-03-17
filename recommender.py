@@ -126,13 +126,17 @@ def recommend(user_prefs: dict, top_n: int = 5) -> list[dict]:
     results = []
     for _, row in top_courses.iterrows():
         results.append({
-            "title":      row["title"].title(),
-            "category":   row["category"].title(),
-            "level":      row["level"].title(),
-            "duration":   row["duration"].title(),
-            "rating":     round(float(row["rating"]), 1),
-            "tags":       row["tags"],
-            "similarity": round(float(row["similarity"]), 3),
+            "title":           row["title"].title(),
+            "category":        row["category"].title(),
+            "level":           row["level"].title(),
+            "duration":        row["duration"].title(),
+            "rating":          round(float(row["rating"]), 1),
+            "platform":        row["platform"],
+            "course_link":     row["course_link"],
+            "youtube_tamil":   row["youtube_tamil"],
+            "youtube_english": row["youtube_english"],
+            "tags":            row["tags"],
+            "similarity":      round(float(row["similarity"]), 3),
         })
 
     return results

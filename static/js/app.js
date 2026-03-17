@@ -170,7 +170,15 @@ function buildCard(course, rank) {
         <span class="badge badge-category">${escapeHTML(course.category)}</span>
         <span class="badge badge-level">${escapeHTML(course.level)}</span>
         <span class="badge badge-duration">⏱ ${escapeHTML(course.duration)}</span>
+        <span class="badge" style="background: rgba(255,255,255,0.1); color: #fff;">🏢 ${escapeHTML(course.platform)}</span>
       </div>
+      
+      <div class="card-links" style="margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+        <a href="${course.course_link}" target="_blank" style="text-decoration: none; font-size: 0.8rem; font-weight: 700; background: var(--grad-primary); color: #fff; padding: 6px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🔗 View Course</a>
+        <a href="${course.youtube_tamil}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🇮🇳 Tamil YT</a>
+        <a href="${course.youtube_english}" target="_blank" style="text-decoration: none; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(255,0,0,0.4); background: rgba(255,0,0,0.1); color: #ff4d4d; padding: 5px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">🇺🇸 English YT</a>
+      </div>
+
       <div class="card-rating">
         ${stars}
         <span style="color:#e8eaf6;margin-left:4px;">${course.rating}</span>
