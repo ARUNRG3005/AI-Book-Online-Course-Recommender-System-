@@ -1,52 +1,24 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.egg
-*.egg-info/
-dist/
-build/
-.eggs/
-*.whl
-
-# Virtual environments
-venv/
-env/
-.env/
-.venv/
-ENV/
-
-# Environment variables
-.env
-*.env
-
-# IDE / Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Flask / Debug
+# Logs
+logs
 *.log
-flask_session/
-instance/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Jupyter Notebooks (if any)
-.ipynb_checkpoints/
+node_modules
+dist
+dist-ssr
+*.local
 
-# Model files (if large)
-*.pkl
-*.joblib
-*.h5
-
-# Test artifacts
-.pytest_cache/
-.coverage
-htmlcov/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
