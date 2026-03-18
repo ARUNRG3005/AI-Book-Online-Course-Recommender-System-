@@ -1,0 +1,47 @@
+:root {
+  --clr-bg:         #f8fafc;
+  --clr-surface:    #ffffff;
+  --clr-glass:      rgba(255, 255, 255, 0.7);
+  --clr-border:     rgba(0, 0, 0, 0.1);
+  --clr-primary:    #5227FF; /* Match background deep purple */
+  --clr-primary-2:  #FF9FFC; /* Match background pink */
+  --clr-accent:     #38bdf8;
+  --clr-success:    #059669;
+  --clr-warning:    #d97706;
+  --clr-error:      #dc2626;
+  --clr-text:       #0d1117; /* Deep dark text */
+  --clr-muted:      #475569; /* Darker muted text */
+  --clr-card-bg:    rgba(255, 255, 255, 0.75);
+
+  --grad-primary:  linear-gradient(135deg, var(--clr-primary), #3b82f6);
+  --grad-hero:     linear-gradient(160deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
+  --grad-card:     linear-gradient(145deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+
+  --shadow-card:   0 10px 40px rgba(0,0,0,0.08);
+  --shadow-glow:   0 0 50px rgba(82, 39, 255, 0.15);
+  --shadow-btn:    0 8px 25px rgba(82, 39, 255, 0.3);
+
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    22px;
+  --radius-xl:    32px;
+  --max-width:    760px;
+  --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #07080f; /* Set a dark base for the whole page */
+  color: var(--clr-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+}
